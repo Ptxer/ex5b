@@ -26,14 +26,14 @@
 			  <option value="R">Réaumur</option>
 			</select>
 		  </div>
-		  <br><button type="button" class="btn btn-primary">Convert</button>
+		  <br><button type="button" class="btn btn-primary" onclick ="Temperature()">Convert</button>
 		</form>
 	</div>
 	<div id="result" style="margin-top:10px;margin-left:10px; font-size: 20px; color:red;">
 	</div>
 	
 	<script>
-		function validate(t){
+		function validate(t) {
 			if(isNaN(t)){
 					msg = "Please verify whether the temperature value is correct!!!";
 					alert(msg);
@@ -46,29 +46,35 @@
 			   }
 			   return true;
 		}
+
+		function temperature(t, u){
+			var t1;
+			var u1;
+
+			if (u == "F") {
+				t1 = t * (9/5) + 32;
+				u1 = "Fahrenheit";
+			} else if(u == "K") {
+				t1 =  t + 273.15;
+				u1 = "Réaumur";
+			} else if(u == "R") {
+				t1 = t * (4/5);
+				u1 = "Kelvin";
+			}
+
+			return {"temp": t1, "unit": u1};
+		}
+
 	    $(document).ready(function(){
 			$("button").click(function(){
 			   var t = $('#temp').val();//celsius
 			   var u = $('#unit').val();
 			   
-			   var valid = validate (t);
+			   var valid = validate(t);
 			   if(!valid) return;
 		
-			   var t1;
-			   var u1;
-			   
-			   if(u == "F"){
-					t1 = t * (9/5) + 32;
-					u1 = "Fahrenheit";
-			   }else if(u == "K"){
-					t1 =  t + 273.15;
-					u1 = "Réaumur";
-			   }else if(u == "R"){
-					t1 = t * (4/5);
-					u1 = "Kelvin";
-			   }
-			   
-			   alert("Temperature is "+t1+" in "+u1);
+				var temp = temperature(t, u);
+				if (temp) alert("Temperature is " + temp.temp + " in " + temp.unit);
 			});
 		});
 	</script>
