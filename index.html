@@ -15,7 +15,7 @@
 		<hr>
 		<form role="form" method="GET">
 		  <div class="form-group">
-			<label for="tem">Current temperature:</label>
+			<label for="tem">Current temperature (Celsius)</label>
 			<input type="text" class="form-control" name="temp" id="temp" value="20">
 		  </div><br>
 		  <div class="form-group">
@@ -70,11 +70,40 @@
 			   var t = $('#temp').val();//celsius
 			   var u = $('#unit').val();
 			   
+<<<<<<< HEAD
 			   var valid = validate(t);
 			   if(!valid) return;
 		
 				var temp = temperature(t, u);
 				if (temp) document.getElementById("result").innerHTML="Temperature is " + temp.temp + " in " + temp.unit;
+=======
+			   if(isNaN(t)){
+					msg = "Please verify whether the temperature value is correct!!!";
+					alert(msg);
+					return;
+			   }
+			   if(!(t >= -100 && t <= 100)){
+					msg = "Tempurature entered (in Celsius) must be between 0 and 100 C'";
+					alert(msg);
+					return;
+			   }
+			   
+			   var t1;
+			   var u1;
+			   
+			   if(u == "F"){
+					t1 = t * (9/5) + 32;
+					u1 = "Fahrenheit";
+			   }else if(u == "K"){
+					t1 =  t + 273.15;
+					u1 = "Réaumur";
+			   }else if(u == "R"){
+					t1 = t * (4/5);
+					u1 = "Kelvin";
+			   }
+			   
+			   alert("Temperature is "+t1+" in "+u1 +);
+>>>>>>> f957d45 (Adding a new description  temp unit)
 			});
 		});
 	</script>
