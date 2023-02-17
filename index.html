@@ -29,7 +29,7 @@
 		  <br><button type="button" class="btn btn-primary" onclick ="Temperature()">Convert</button>
 		</form>
 	</div>
-	<div id="result" style="margin-top:10px;margin-left:10px; font-size: 20px; color:red;">
+	<div id="result" style ="margin-top:10px;margin-left:10px; font-size: 20px; color:red;">
 	</div>
 	
 	<script>
@@ -64,7 +64,7 @@
 
 			return {"temp": t1, "unit": u1};
 		}
-
+		
 	    $(document).ready(function(){
 			$("button").click(function(){
 			   var t = $('#temp').val();//celsius
@@ -74,7 +74,7 @@
 			   if(!valid) return;
 		
 				var temp = temperature(t, u);
-				if (temp) alert("Temperature is " + temp.temp + " in " + temp.unit);
+				if (temp) document.getElementById("result").innerHTML="Temperature is " + temp.temp + " in " + temp.unit;
 			});
 		});
 	</script>
